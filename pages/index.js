@@ -1,5 +1,7 @@
-import styled, {createGlobalStyle} from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+import Head from 'next/head';
 import db from '../db.json';
+import { useRouter } from 'next/router';
 
 // CONFIGURACAO INICIAL COMPONENT INDEX
 const GlobalStyle = createGlobalStyle`
@@ -8,10 +10,10 @@ const GlobalStyle = createGlobalStyle`
     }
     `;
 
-//const Title = styled.h1` // Menos otimizado
-//  font-size: 50px;   
+// const Title = styled.h1` // Menos otimizado
+//  font-size: 50px;
 //  color: ${({ theme }) => theme.colors.secondary};
-//`;
+// `;
 
 const BackgroundImage = styled.div`
   background-image: url(${db.bg});
@@ -19,7 +21,7 @@ const BackgroundImage = styled.div`
   background-size: cover;
   background-position: center;
   opacity: 1;
-`;   
+`;
 export const BodyContainer = styled.div`
    width: 100%;
   max-width: 350px;
@@ -35,9 +37,7 @@ const Widget = styled.div`
   margin-top: 24px;
   margin-bottom: 24px;
   border: 1px solid ${({ theme }) => theme.colors.primary};
-  background-color: ${({ theme }) => {
-    return theme.colors.mainBg;
-  }};
+  background-color: ${({ theme }) => theme.colors.mainBg};
   border-radius: 4px;
   overflow: hidden;
   h1, h2, h3 {
@@ -50,6 +50,19 @@ const Widget = styled.div`
     font-size: 14px;
     font-weight: 400;
     line-height: 1;
+  }
+`;
+
+Widget.Header = styled.header`
+  display: flex;
+  color: white;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 18px 32px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  
+  * {
+    margin: 0;
   }
 `;
 
@@ -72,30 +85,40 @@ Widget.Content = styled.header`
 `;
 export default function Home(props) {
   console.log('props da pagina', props);
-return (
-  
-  <div>
-    <script src="js/reactjs/main.js" type = "text/babel"></script>
-    <script type="text/jsx"></script>
-    <h1> Código Livre</h1>
+  return (
+    <div>
+      <script src="js/reactjs/main.js" type="text/babel" />
+      <script type="text/jsx" />
 
-    <p>{props.dadosDoGit.pedidos[0].id_pedidos}</p> 
+      <Head />
 
-  </div>
-  )
+      <Widget>
+        <BodyContainer>
+          <Widget.Header>
+            <h1> Código Livre</h1>
+          </Widget.Header>
+          <Widget.Content>
+            <p>{props.dadosDoGit.pedidos[0].id_pedidos}</p>
+            
+            <br/>
+           
+          </Widget.Content>
+        </BodyContainer>
+      </Widget>
+    </div>
+  );
 }
 
-export async function getStaticProps(){
-  console.log('Rodando no server !')
+export async function getStaticProps() {
+  console.log('Rodando no server !');
 
-  const retornoDaAPIInicial = await fetch('http://localhost:8080/produtos')
+  const retornoDaAPIInicial = await fetch('http://localhost:3000/pedidos');
   const retornoDaAPI = await retornoDaAPIInicial.json();
 
   return {
     props: {
       dadoViaStaticProps: 'dado simples via static props',
-      dadosDoGit: retornoDaAPI
+      dadosDoGit: retornoDaAPI,
     },
-  }
-
+  };
 }

@@ -1,12 +1,5 @@
-import styled, {createGlobalStyle} from 'styled-components';
+import styled from 'styled-components';
 import db from '../db.json';
-
-// CONFIGURACAO INICIAL COMPONENT INDEX
-const GlobalStyle = createGlobalStyle`
-    body{
-      font-family: sans-serif;
-    }
-    `;
 
 //const Title = styled.h1` // Menos otimizado
 //  font-size: 50px;   
@@ -70,27 +63,44 @@ Widget.Content = styled.header`
     padding: 0;
   }
 `;
-export default function Home(props) {
-  console.log('props da pagina', props);
-return (
-  
-  <div>
-    <script src="js/reactjs/main.js" type = "text/babel"></script>
-    <script type="text/jsx"></script>
-    <h1> Código Livre</h1>
 
-    <p>{props.dadosDoGit.pedidos[0].id_pedidos}</p> 
 
-  </div>
+/*
+
+export default function Home() {
+  return (
+    <BackgroundImage>
+        <BodyContainer>
+            <h1> Titulo </h1>
+            <p> LoreIpson </p>
+          <Widget>
+            <h1> Titulo </h1>
+            <p> LoreIpson </p>
+          </Widget>
+        </BodyContainer>
+    </BackgroundImage>
   )
 }
-
+*/
 export async function getStaticProps(){
-  console.log('Rodando no server !')
 
-  const retornoDaAPIInicial = await fetch('http://localhost:8080/produtos')
-  const retornoDaAPI = await retornoDaAPIInicial.json();
+  const retornoDaAPI = await fetch('http://localhost:3000/pedidos')
+  .then((respostaDoServer) => {
+    return respostaDoServer.json();
+  });
+ 
+  /* .then((respostaConvertida) => {
+      console.log('respostaConvertida',respostaConvertida)
+      setDadosGit(respostaConvertida);
+  }) 
+  .catch((err) => {
+   console.log(err);
 
+  })
+  .finally(() => {
+    console.log('passou no caixa! ')
+
+  }) */
   return {
     props: {
       dadoViaStaticProps: 'dado simples via static props',
@@ -98,4 +108,39 @@ export async function getStaticProps(){
     },
   }
 
+
+
+
+/*
+
+export default function Home() {
+  const [dadosGit, setDadosGit] = React.useState({});
+  React.useEffect(() => {
+   
+ }, []);
+
+
+ console.log('dadosDoGit', dadosGit);
+ //console.log('retornoDaAPI', retornoDaAPI);
+
+*/
+
+return (
+  <div>
+    <h1> Código Livre</h1>
+
+    <h2>{props.dadosDoGit}</h2>
+    <h2>{props.dadosDoGit}</h2>
+
+  </div>
+)
 }
+/* Export menos optimizado //
+export default function Home() {
+ return (
+   <div style={{ backgroundImage: `url(${db.bg})`}}>
+     TESTANDO
+   </div>
+ )
+}
+*/

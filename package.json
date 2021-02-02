@@ -7,13 +7,15 @@
     "export": "next build && next export",
     "start": "set PORT=3006 && next start",
     "eslint:init": "eslint --init",
-    "lint" : "eslint ./ --fix"
+    "lint": "eslint ./ --fix"
   },
   "dependencies": {
     "babel-preset-react": "^6.24.1",
     "next": "latest",
+    "prop-types": "^15.7.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
+    "react-image": "^4.0.3",
     "react-is": "^16.8.0",
     "styled-components": "^5.0.0"
   },

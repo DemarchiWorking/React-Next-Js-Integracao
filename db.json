@@ -2,9 +2,14 @@
     "bg": "https://image.freepik.com/fotos-gratis/3d-rendem-de-um-fundo-de-halloween-com-aboboras-em-um-deck-de-madeira-com-ceu-nocturno-defocussed_1048-3091.jpg",
     "title": "Titulo",
     "description": " Descricao Aqui! Arquivo de configuração, CSS",
-    "questoes": [
-
-    ],
+    "questoes": {
+        "home" :    { 
+                        "titulo": " Inicio ",
+                        "desc" : "Testando <>",
+                        "carregandoTitulo" : " Carregando ..."
+                    },
+        "valor" : 50
+    },
     "external": [
 
     ],

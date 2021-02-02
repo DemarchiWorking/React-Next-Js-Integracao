@@ -1,7 +1,12 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import Head from 'next/head';
 import db from '../db.json';
-import { useRouter } from 'next/router';
+import Footer from '../src/componentes/Footer';
+import WidgetContainer from '../src/componentes/WidgetContainer';
+import Logo from '../src/componentes/Logo';
+//import Logo from '../src/componentes/Logo';
+//import Widget from '../src/componentes/Widget'; Importa um componente do src :// <Widget> </Widget>  // componente filho <Widget.Content 
+//import { useRouter } from 'next/router'; aqerr
 
 // CONFIGURACAO INICIAL COMPONENT INDEX
 const GlobalStyle = createGlobalStyle`
@@ -89,23 +94,32 @@ export default function Home(props) {
     <div>
       <script src="js/reactjs/main.js" type="text/babel" />
       <script type="text/jsx" />
+      <Head> 
 
-      <Head />
-
+      </Head>
+      
+      <WidgetContainer>
+        <div>
+        { /*<Logo/> COMMENTARIOS */}
+        </div>
       <Widget>
-        <BodyContainer>
+              {/* AQUI O CODIGO DA LOGO*/}
+              <Logo></Logo>
           <Widget.Header>
-            <h1> Código Livre</h1>
+            <h1> Código Livre</h1> <div class='container'>
+            </div>
           </Widget.Header>
           <Widget.Content>
             <p>{props.dadosDoGit.pedidos[0].id_pedidos}</p>
-            
+           
             <br/>
            
           </Widget.Content>
-        </BodyContainer>
+          <Footer></Footer>
       </Widget>
-    </div>
+      
+      </WidgetContainer>
+      </div>
   );
 }
 

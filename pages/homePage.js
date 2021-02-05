@@ -1,16 +1,23 @@
 import React from 'react';
 //import Foto from '../photos/icon.png'
-//import { useRouter } from 'next/router'; // adicionar rota
+import { useRouter } from 'next/router'; // adicionar rota
 import WidgetContainer from '../src/componentes/WidgetContainer';
 import Widget from '../src/componentes/Widget';
 import db from '../db.json';
 
+
 function LoadingScreen() {
+    
+    console.log('perguntas criadas: ', db.questoes);
+    const questoes = db.questoes.home;
     return (   
         <div>
             <Widget>
                 <Widget.Header>
-                 { db.questoes.home.carregandoTitulo }
+                 {  
+                 questoes.titulo
+                 
+                 }
                 </Widget.Header>
                 <Widget.Content>
                     [Desafio do Loading]
@@ -28,14 +35,19 @@ function LoadingScreen() {
             );
 }
 export default function HomePage(){
+    const router = useRouter();
+    
+    function redirecionaInicio(){
+        console.log('Encaminha Login');
+        router.push(`/`)
+    }
     console.log('Perguntas', db.questoes.length)
     return (
         <div>
             <WidgetContainer>
                 <Widget>
-                <h2>Pagina de Home</h2>
-               {/*<img src="../photos/icon.png"></img> */} 
-               </Widget><LoadingScreen/>
+                <h2>Pagina de Home  -- <button onClick={redirecionaInicio}>Sair</button>  </h2>
+                </Widget><LoadingScreen/>
             </WidgetContainer>    
         </div>
     )}

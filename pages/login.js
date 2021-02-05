@@ -3,13 +3,14 @@ import { useRouter } from 'next/router'; // adicionar rota
 import Input from '../src/componentes/Input'; //
 import Button from '../src/componentes/Button'; //
 
-export default function LoginPage(){
+export default function LoginPage(props){
     const router = useRouter();
     const [login, setLogin] = React.useState('');    // estado inicial do input 
     const [senha, setSenha] = React.useState('');    // imput senha 
 
-    console.log('retorno do use state', login, setLogin); // chamar a funcao setLogin quando for chamado a mudanca de estado
+  //  console.log('retorno do use state', login, setLogin); // chamar a funcao setLogin quando for chamado a mudanca de estado
 
+  console.log('props da pagina', props);
     return (
         <div>
                 <h2>Pagina de Login</h2>
@@ -47,3 +48,49 @@ export default function LoginPage(){
         </div>
     )
 }
+
+export async function getStaticProps() {
+    console.log('Rodando no server !');
+  
+    
+    const retornoDaAPIInicial = await fetch('http://localhost:3000/usuarios/login', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: 'admn11@gmail.com',
+          password: 'admin1234',
+        })
+      }).then((response) => {
+          return response;
+      });
+    const retornoDaAPI = await retornoDaAPIInicial.json();
+    console.log(retornoDaAPI.toString());
+    return {
+      props: {
+        dadoViaStaticProps: 'Index: . dado simples via adereços estáticos (static props)',
+        dadosDoGit: retornoDaAPI,
+      },
+      
+    };
+  }
+
+
+ 
+/*
+ const retornoDaAPIInicial = await fetch('http://localhost:3000/usuarios/login', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email: 'admn11@gmail.com',
+      password: 'admin1234',
+    })
+  }).then((response) => {
+      return response;
+  });
+*/

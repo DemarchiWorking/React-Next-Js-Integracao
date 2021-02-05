@@ -1,9 +1,12 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import db from '../db.json';
+import Cabecalho from '../src/componentes/aPRINCIPAIS/Cabecalho';
 
+const { theme } = db;
 const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
+    
   }
   body {
     margin: 0;
@@ -13,6 +16,8 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     font-family: 'Lato', sans-serif;
     // Deixa branco no começo
+
+
   
   }
   html, body {
@@ -25,15 +30,14 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const { theme } = db;
-
 export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}><Cabecalho></Cabecalho>
+        
         <Component {...pageProps} />
-      </ThemeProvider>
+      </ThemeProvider><Cabecalho></Cabecalho>
     </>
   );
 }

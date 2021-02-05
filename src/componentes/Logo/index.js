@@ -22,9 +22,6 @@ function Logo() {
             );
 }
 
-//Logo.propTypes = {
-//  className: PropTypes.jp.isRequired,
-//};
 
 const IncludeLogo = styled(Logo)`
   margin: auto;

@@ -11,12 +11,13 @@
   },
   "dependencies": {
     "babel-preset-react": "^6.24.1",
+    "lottie-web": "^5.7.6",
     "next": "latest",
     "prop-types": "^15.7.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
-    "react-image": "^4.0.3",
     "react-is": "^16.8.0",
+    "react-lottie": "^1.2.3",
     "styled-components": "^5.0.0"
   },
   "devDependencies": {

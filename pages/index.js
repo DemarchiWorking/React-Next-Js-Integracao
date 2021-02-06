@@ -1,12 +1,10 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import Head from 'next/head';
-import db from '../db.json';
 import Footer from '../src/componentes/Footer';
 import WidgetContainer from '../src/componentes/WidgetContainer';
 import Widget from '../src/componentes/Widget';
 import { useRouter } from 'next/router'; // adicionar rota
 import { func } from 'prop-types';
-
 
 // CONFIGURACAO INICIAL COMPONENT INDEX
 const GlobalStyle = createGlobalStyle`
@@ -24,7 +22,7 @@ const BackgroundImage = styled.div`
 
 `;
 export default function Home(props) {
-  
+
   function redirecionaLogin(){
     console.log('Encaminha Login');
     router.push(`/login`)
@@ -62,8 +60,7 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  console.log('Rodando no server !');
-
+  console.log('Index: Rodando no server !');
   const retornoDaAPIInicial = await fetch('http://localhost:3000/pedidos');
   const retornoDaAPI = await retornoDaAPIInicial.json();
 

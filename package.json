@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "babel-preset-react": "^6.24.1",
+    "caniuse-lite": "^1.0.30001185",
     "lottie-web": "^5.7.6",
     "next": "latest",
     "prop-types": "^15.7.2",

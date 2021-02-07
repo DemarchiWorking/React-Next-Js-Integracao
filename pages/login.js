@@ -11,10 +11,29 @@ export default function LoginPage(props){
     const [senha, setSenha] = React.useState('');    // imput senha 
 
     // Envia form para API 
-    function ControleDeAcao(){
-      alert('aa')
-    
-    
+    async function ControleDeAcao(){
+      const retornoDaAPIInicial = await fetch('http://localhost:3000/usuarios/login', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: 'admn11@gmail.com',
+          senha: 'admin1234',
+        })
+      }).then((response) => {
+        return response;
+      });
+    const retornoDaAPI = await retornoDaAPIInicial.json();
+    console.log(retornoDaAPI.toString());
+    return {
+      props: {
+        dadoViaStaticProps: 'Index: . dado simples via adereços estáticos (static props)',
+        dadosDoGit: retornoDaAPI
+        },
+    };
+     
     }
 
   //  console.log('retorno do use state', login, setLogin); // chamar a funcao setLogin quando for chamado a mudanca de estado
@@ -56,8 +75,10 @@ export default function LoginPage(props){
 
 
 
-export async function getStaticProps() {
-    console.log('LOGIN :Rodando no server !');
+//export function getStaticProps() {}
+  
+  /* 
+  console.log('LOGIN :Rodando no server !');
   
     
     //req.body.senha
@@ -87,7 +108,7 @@ export async function getStaticProps() {
 
 
  
-/*
+
  const retornoDaAPIInicial = await fetch('http://localhost:3000/usuarios/login', {
     method: 'POST',
     headers: {
@@ -101,4 +122,4 @@ export async function getStaticProps() {
   }).then((response) => {
       return response;
   });
-*/
+    */
